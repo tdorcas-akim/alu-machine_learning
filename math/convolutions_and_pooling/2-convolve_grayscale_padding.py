@@ -40,4 +40,4 @@ def convolve_grayscale_padding(images, kernel, padding):
             patch = images_padded[:, i:i + kh, j:j + kw]
             convolved[:, i, j] = np.sum(patch * kernel, axis=(1, 2))
 
-    return convolvedi
+    return convolved
