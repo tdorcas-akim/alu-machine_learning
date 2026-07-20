@@ -44,7 +44,7 @@ def convolve(images, kernels, padding='same', stride=(1, 1)):
     # Initialize output array with shape (m, output_h, output_w, nc)
     convolved = np.zeros((m, output_h, output_w, nc))
 
-    # Perform convolution using three loops (i for height, j for width, k for kernel index)
+    # Perform convolution using three loops
     for i in range(output_h):
         for j in range(output_w):
             patch = images_padded[
@@ -54,8 +54,9 @@ def convolve(images, kernels, padding='same', stride=(1, 1)):
                 :
             ]
             for k in range(nc):
+                kernel_k = kernels[:, :, :, k]
                 convolved[:, i, j, k] = np.sum(
-                    patch * kernels[:, :, :, k],
+                    patch * kernel_k,
                     axis=(1, 2, 3)
                 )
 
